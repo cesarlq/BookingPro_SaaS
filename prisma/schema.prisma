@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole  @default(CUSTOMER)
+  phone         String?
+  businessId    String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+  business Business? @relation(fields: [businessId], references: [id])
+  bookings Booking[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Business {
+  id          String       @id @default(cuid())
+  name        String
+  slug        String       @unique
+  type        BusinessType
+  description String?
+  email       String
+  phone       String
+  address     String
+  city        String
+  country     String
+  timezone    String       @default("UTC")
+  currency    String       @default("EUR")
+  language    String       @default("en")
+  logo        String?
+  images      String[]
+  settings    Json?
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  users    User[]
+  rooms    Room[]
+  tables   Table[]
+  bookings Booking[]
+  payments Payment[]
+
+  @@map("businesses")
+}
+
+model Room {
+  id          String     @id @default(cuid())
+  businessId  String
+  name        String
+  type        RoomType
+  capacity    Int
+  price       Float
+  description String?
+  amenities   String[]
+  images      String[]
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  business Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+
+  @@map("rooms")
+}
+
+model Table {
+  id          String    @id @default(cuid())
+  businessId  String
+  name        String
+  type        TableType
+  capacity    Int
+  location    String?
+  description String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  business Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+
+  @@map("tables")
+}
+
+model Booking {
+  id         String        @id @default(cuid())
+  businessId String
+  userId     String
+  roomId     String?
+  tableId    String?
+  status     BookingStatus @default(PENDING)
+  startDate  DateTime
+  endDate    DateTime?
+  guests     Int
+  totalPrice Float
+  notes      String?
+  metadata   Json?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id])
+  room     Room?    @relation(fields: [roomId], references: [id])
+  table    Table?   @relation(fields: [tableId], references: [id])
+  payment  Payment?
+
+  @@map("bookings")
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  bookingId      String        @unique
+  businessId     String
+  amount         Float
+  currency       String
+  status         PaymentStatus @default(PENDING)
+  paymentMethod  String?
+  stripePaymentId String?
+  metadata       Json?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  booking  Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  STAFF
+  CUSTOMER
+}
+
+enum BusinessType {
+  HOTEL
+  RESTAURANT
+  BOTH
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  SUITE
+  FAMILY
+}
+
+enum TableType {
+  SMALL
+  MEDIUM
+  LARGE
+  FAMILY
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}

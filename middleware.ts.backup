@@ -1,0 +1,22 @@
+import createMiddleware from 'next-intl/middleware';
+
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: ['en', 'es', 'fr', 'de'],
+
+  // Used when no locale matches
+  defaultLocale: 'en',
+
+  // Don't redirect if the pathname starts with these patterns
+  pathnames: {
+    '/': '/',
+    '/dashboard': '/dashboard',
+    '/api': '/api',
+    '/auth': '/auth'
+  }
+});
+
+export const config = {
+  // Match only internationalized pathnames
+  matcher: ['/', '/(de|en|es|fr)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
+};

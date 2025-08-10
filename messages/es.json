@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "success": "Éxito",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "view": "Ver",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "bookings": "Reservas",
+    "rooms": "Habitaciones",
+    "tables": "Mesas",
+    "customers": "Clientes",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "signin": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "signout": "Cerrar Sesión",
+    "email": "Correo",
+    "password": "Contraseña",
+    "name": "Nombre",
+    "confirmPassword": "Confirmar Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "rememberMe": "Recordarme",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "signInWith": "Iniciar sesión con {provider}",
+    "createAccount": "Crear Cuenta"
+  },
+  "booking": {
+    "title": "Hacer una Reserva",
+    "step1": "¿Cuándo y Cuántos?",
+    "step2": "Elige tu Espacio",
+    "step3": "Detalles Finales",
+    "checkIn": "Entrada",
+    "checkOut": "Salida",
+    "guests": "Huéspedes",
+    "room": "Habitación",
+    "table": "Mesa",
+    "total": "Total",
+    "notes": "Peticiones Especiales",
+    "confirm": "Confirmar Reserva",
+    "processing": "Procesando...",
+    "summary": "Resumen de Reserva",
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmada",
+      "cancelled": "Cancelada",
+      "completed": "Completada",
+      "noShow": "No se Presentó"
+    }
+  },
+  "dashboard": {
+    "welcome": "¡Bienvenido de nuevo, {name}!",
+    "overview": "Aquí tienes el resumen de tu negocio",
+    "totalBookings": "Total de Reservas",
+    "totalRevenue": "Ingresos Totales",
+    "pendingBookings": "Pendientes",
+    "confirmedBookings": "Confirmadas",
+    "recentBookings": "Reservas Recientes",
+    "noBookings": "No hay reservas aún",
+    "createTestBooking": "Crear Reserva de Prueba"
+  },
+  "business": {
+    "hotel": "Hotel",
+    "restaurant": "Restaurante",
+    "both": "Hotel y Restaurante"
+  },
+  "currency": {
+    "eur": "Euro (€)",
+    "usd": "Dólar Estadounidense ($)",
+    "gbp": "Libra Británica (£)"
+  }
+}

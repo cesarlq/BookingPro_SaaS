@@ -1,0 +1,88 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "confirm": "Confirm",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "bookings": "Bookings",
+    "rooms": "Rooms",
+    "tables": "Tables",
+    "customers": "Customers",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signout": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember me",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signInWith": "Sign in with {provider}",
+    "createAccount": "Create Account"
+  },
+  "booking": {
+    "title": "Make a Booking",
+    "step1": "When & How Many?",
+    "step2": "Choose Your Space",
+    "step3": "Final Details",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "room": "Room",
+    "table": "Table",
+    "total": "Total",
+    "notes": "Special Requests",
+    "confirm": "Confirm Booking",
+    "processing": "Processing...",
+    "summary": "Booking Summary",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "noShow": "No Show"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}!",
+    "overview": "Here's your business overview",
+    "totalBookings": "Total Bookings",
+    "totalRevenue": "Total Revenue",
+    "pendingBookings": "Pending",
+    "confirmedBookings": "Confirmed",
+    "recentBookings": "Recent Bookings",
+    "noBookings": "No bookings yet",
+    "createTestBooking": "Create Test Booking"
+  },
+  "business": {
+    "hotel": "Hotel",
+    "restaurant": "Restaurant",
+    "both": "Hotel & Restaurant"
+  },
+  "currency": {
+    "eur": "Euro (€)",
+    "usd": "US Dollar ($)",
+    "gbp": "British Pound (£)"
+  }
+}
